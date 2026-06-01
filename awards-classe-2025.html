@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 Awards de la Classe 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold2: #FFA500;
+    --dark: #0a0a0f;
+    --dark2: #13131a;
+    --dark3: #1c1c28;
+    --accent: #ff3c6f;
+    --accent2: #7b2ff7;
+    --text: #f0f0f0;
+    --muted: #888;
+    --green: #00e676;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 20%, rgba(123,47,247,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,60,111,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255,215,0,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeDown 0.8s ease both;
+  }
+  .trophy-icon {
+    font-size: 72px;
+    display: block;
+    margin-bottom: 10px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 10vw, 72px);
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+  .progress-wrap {
+    background: var(--dark3);
+    border-radius: 999px;
+    height: 6px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent), var(--gold));
+    border-radius: 999px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+    margin-bottom: 30px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0.4;
+  }
+  .question-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s, transform 0.2s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .question-card:hover { border-color: rgba(255,215,0,0.2); transform: translateY(-2px); }
+  .question-card.answered { border-color: rgba(123,47,247,0.4); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .q-number { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: var(--accent); letter-spacing: 2px; margin-bottom: 6px; }
+  .q-text { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 14px; line-height: 1.4; }
+  select {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  select:focus { outline: none; border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(123,47,247,0.15); }
+  select option { background: var(--dark3); color: var(--text); }
+  .double-select { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .double-select label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+  .submit-wrap { text-align: center; margin-top: 50px; }
+  .submit-btn {
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    padding: 18px 60px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 30px rgba(123,47,247,0.3);
+  }
+  .submit-btn:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(255,60,111,0.4); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 999;
+    transition: transform 0.4s ease;
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.success { border-color: var(--green); color: var(--green); }
+  .toast.error { border-color: var(--accent); color: var(--accent); }
+
+  /* SUCCESS SCREEN */
+  #success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeDown 0.6s ease both;
+  }
+  #success-screen .big-emoji { font-size: 80px; display: block; margin-bottom: 20px; }
+  #success-screen h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    background: linear-gradient(135deg, var(--gold), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  #success-screen p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+  /* ADMIN PANEL */
+  #admin-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--dark3);
+    border: 1px solid rgba(255,215,0,0.3);
+    color: var(--gold);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s;
+  }
+  #admin-btn:hover { background: rgba(255,215,0,0.1); }
+
+  /* ADMIN MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--dark2);
+    border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 20px;
+    padding: 32px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .modal h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .admin-input {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  .admin-input:focus { outline: none; border-color: var(--gold); }
+  .admin-login-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold2), var(--gold));
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .admin-login-btn:hover { opacity: 0.85; }
+  .close-modal {
+    float: right;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .close-modal:hover { color: var(--text); }
+
+  /* VOTES TABLE */
+  .votes-summary { margin-top: 20px; }
+  .vote-row {
+    background: var(--dark3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+  }
+  .vote-row-title {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .vote-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 14px;
+  }
+  .vote-entry:last-child { border-bottom: none; }
+  .vote-name { color: var(--gold); font-weight: 700; }
+  .vote-count {
+    background: rgba(123,47,247,0.3);
+    color: var(--accent2);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .total-votes {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .total-votes span { color: var(--gold); font-weight: 700; }
+  .refresh-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.2s;
+  }
+  .refresh-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .loading { text-align: center; color: var(--muted); padding: 20px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ADMIN BTN -->
+<button id="admin-btn" onclick="openAdmin()">🔐 Admin</button>
+
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal">
+    <button class="close-modal" onclick="closeAdmin()">✕</button>
+    <h3>🏆 Admin Panel</h3>
+    <div id="admin-login">
+      <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">Entre le mot de passe admin pour voir les votes.</p>
+      <input type="password" class="admin-input" id="adminPassword" placeholder="Mot de passe..." onkeydown="if(event.key==='Enter')checkAdmin()">
+      <button class="admin-login-btn" onclick="checkAdmin()">ACCÉDER AUX VOTES</button>
+    </div>
+    <div id="admin-content" style="display:none;">
+      <div class="total-votes" id="totalVotes">Chargement...</div>
+      <div class="votes-summary" id="votesSummary"><div class="loading">Chargement des votes...</div></div>
+      <button class="refresh-btn" onclick="loadVotes()">🔄 Actualiser</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div id="form-screen">
+    <div class="header">
+      <span class="trophy-icon">🏆</span>
+      <h1>Awards de la Classe</h1>
+      <p class="subtitle">Édition 2025 &nbsp;·&nbsp; Vote anonyme</p>
+    </div>
+
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-label"><span id="progressText">0 / 34 réponses</span></div>
+
+    <div class="section-title">🎭 Personnalités</div>
+    <div class="question-card"><div class="q-number">Question 01</div><div class="q-text">Qui est la personne la plus drôle de la classe ?</div><select id="q1" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 02</div><div class="q-text">Qui met l'ambiance en cours ?</div><select id="q2" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 03</div><div class="q-text">Qui chante le plus en classe ?</div><select id="q3" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 04</div><div class="q-text">Qui crie le plus ?</div><select id="q4" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 05</div><div class="q-text">Qui parle le plus en cours ?</div><select id="q5" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+
+    <div class="section-title">📱 Social & Influence</div>
+    <div class="question-card"><div class="q-number">Question 06</div><div class="q-text">Qui est le plus sur TikTok selon vous ?</div><select id="q6" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 07</div><div class="q-text">Qui est le plus susceptible de devenir influenceur/influenceuse ?</div><select id="q7" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 08</div><div class="q-text">Qui est le plus charo ?</div><select id="q8" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 09</div><div class="q-text">Qui aime le plus les potins ?</div><select id="q9" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+
+    <div class="section-title">✨ Popularité & Style</div>
+    <div class="question-card"><div class="q-number">Question 10</div><div class="q-text">Qui est le plus chou ?</div><select id="q10" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 11</div><div class="q-text">Qui est le plus apprécié de la classe ?</div><select id="q11" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 12</div><div class="q-text">Qui s'habille le mieux ?</div><select id="q12" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 13</div><div class="q-text">Qui est la plus belle ?</div><select id="q13" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 14</div><div class="q-text">Qui est le plus beau ?</div><select id="q14" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+
+    <div class="section-title">💘 Couples & Vie de classe</div>
+    <div class="question-card">
+      <div class="q-number">Question 15 — Duo</div>
+      <div class="q-text">Quel est le meilleur couple ?</div>
+      <div class="double-select">
+        <div><label>Personne n°1</label><select id="q15a" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+        <div><label>Personne n°2</label><select id="q15b" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+      </div>
+    </div>
+    <div class="question-card">
+      <div class="q-number">Question 16 — Duo</div>
+      <div class="q-text">Selon vous, quelles sont les deux personnes qui ont le plus de chances de sortir ensemble ?</div>
+      <div class="double-select">
+        <div><label>Personne n°1</label><select id="q16a" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+        <div><label>Personne n°2</label><select id="q16b" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+      </div>
+    </div>
+    <div class="question-card"><div class="q-number">Question 17</div><div class="q-text">Qui est la maman de la classe ?</div><select id="q17" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 18</div><div class="q-text">Qui est le papa de la classe ?</div><select id="q18" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 19</div><div class="q-text">Qui est le meilleur délégué de la classe ?</div><select id="q19" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+
+    <div class="section-title">📚 Scolaire & Sérieux</div>
+    <div class="question-card"><div class="q-number">Question 20</div><div class="q-text">Qui est le plus sportif ?</div><select id="q20" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 21</div><div class="q-text">Qui a les meilleures notes ?</div><select id="q21" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 22</div><div class="q-text">Qui est le plus sérieux ?</div><select id="q22" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 23</div><div class="q-text">Qui est le plus organisé ?</div><select id="q23" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+
+    <div class="section-title">😴 Les anti-héros</div>
+    <div class="question-card"><div class="q-number">Question 24</div><div class="q-text">Qui est le plus timide ?</div><select id="q24" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 25</div><div class="q-text">Qui arrive le plus en retard ?</div><select id="q25" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 26</div><div class="q-text">Qui est le plus absent ?</div><select id="q26" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 27</div><div class="q-text">Qui est le plus nonchalant ?</div><select id="q27" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 28</div><div class="q-text">Qui est le plus « je-m'en-foutiste » ?</div><select id="q28" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 29</div><div class="q-text">Qui est le plus aigri ?</div><select id="q29" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 30</div><div class="q-text">Qui se croit drôle mais ne l'est pas du tout ?</div><select id="q30" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+
+    <div class="section-title">🔮 Prédictions</div>
+    <div class="question-card"><div class="q-number">Question 31</div><div class="q-text">Qui a le plus de chances de finir au chômage ?</div><select id="q31" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+    <div class="question-card"><div class="q-number">Question 32</div><div class="q-text">Qui va redoubler ?</div><select id="q32" onchange="updateProgress()"><option value="">— Choisir —</option></select></div>
+
+    <div class="section-title">👩‍🏫 Professeurs</div>
+    <div class="question-card">
+      <div class="q-number">Question 33</div>
+      <div class="q-text">Quel est le meilleur professeur ?</div>
+      <select id="q33" onchange="updateProgress()">
+        <option value="">— Choisir —</option>
+        <option>M. Dupuy</option><option>M. Borderie</option><option>M. Meunier</option>
+        <option>M. Garcia</option><option>M. Nibaudeau</option><option>M. Plisson</option>
+      </select>
+    </div>
+    <div class="question-card">
+      <div class="q-number">Question 34</div>
+      <div class="q-text">Quelle est la meilleure professeure ?</div>
+      <select id="q34" onchange="updateProgress()">
+        <option value="">— Choisir —</option>
+        <option>Mme Beuzen</option><option>Mme Jouanard</option><option>Mme Vaisson</option>
+        <option>Mme Depont</option><option>Mme Dondossola</option><option>Mme Vincent (AP)</option>
+      </select>
+    </div>
+
+    <div class="submit-wrap">
+      <button class="submit-btn" id="submitBtn" onclick="submitForm()">🏆 ENVOYER MES VOTES</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS SCREEN -->
+  <div id="success-screen">
+    <span class="big-emoji">🎉🏆🎊</span>
+    <h2>Votes envoyés !</h2>
+    <p>Merci pour ta participation aux Awards 2025 !<br>Les résultats seront révélés bientôt...</p>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCXP80HfH67nx9_fRasdUJ-IyOV4WVlcqM",
+    authDomain: "awards-classe-501.firebaseapp.com",
+    projectId: "awards-classe-501",
+    storageBucket: "awards-classe-501.firebasestorage.app",
+    messagingSenderId: "141320434241",
+    appId: "1:141320434241:web:8733db34b66cea05d88cc0",
+    measurementId: "G-M01HW3F5ZE"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Expose to global scope
+  window._db = db;
+  window._collection = collection;
+  window._addDoc = addDoc;
+  window._getDocs = getDocs;
+  window._serverTimestamp = serverTimestamp;
+  window._firebaseReady = true;
+
+  // Dispatch event so submit knows Firebase is ready
+  window.dispatchEvent(new Event('firebaseReady'));
+</script>
+
+<script>
+const ADMIN_PASSWORD = "awards2025";
+
+const eleves = [
+  "Ilina","Camille O.","Ceane","Sawsene","Aure","Abdrahman","Manon","Arthur",
+  "Fernand","Kamal","Baptiste","Éline","Elyne","Ines","Emil","Calista","Lucie",
+  "Ninon","Usay","Yasser","Mohamed","Roann","Yasmine","Raghad","Paloma","Lisy",
+  "Noam","Léa","Louise","Ceylin","Louane","Zina","Camille B.","Aziza","Raphaël"
+];
+
+const questionLabels = {
+  q1:"La personne la plus drôle", q2:"Qui met l'ambiance", q3:"Qui chante le plus",
+  q4:"Qui crie le plus", q5:"Qui parle le plus", q6:"Le plus sur TikTok",
+  q7:"Futur influenceur/se", q8:"Le plus charo", q9:"Qui aime les potins",
+  q10:"Le plus chou", q11:"Le plus apprécié", q12:"Qui s'habille le mieux",
+  q13:"La plus belle", q14:"Le plus beau", q15a:"Meilleur couple (P1)",
+  q15b:"Meilleur couple (P2)", q16a:"Sortir ensemble (P1)", q16b:"Sortir ensemble (P2)",
+  q17:"La maman de la classe", q18:"Le papa de la classe", q19:"Meilleur délégué",
+  q20:"Le plus sportif", q21:"Meilleures notes", q22:"Le plus sérieux",
+  q23:"Le plus organisé", q24:"Le plus timide", q25:"Le plus en retard",
+  q26:"Le plus absent", q27:"Le plus nonchalant", q28:"Le plus je-m'en-foutiste",
+  q29:"Le plus aigri", q30:"Se croit drôle mais non", q31:"Finira au chômage",
+  q32:"Va redoubler", q33:"Meilleur prof (H)", q34:"Meilleure prof (F)"
+};
+
+const eleveSelects = ["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10",
+  "q11","q12","q13","q14","q15a","q15b","q16a","q16b","q17","q18","q19",
+  "q20","q21","q22","q23","q24","q25","q26","q27","q28","q29","q30","q31","q32"];
+
+// Populate selects
+eleveSelects.forEach(id => {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  eleves.forEach(e => {
+    const opt = document.createElement('option');
+    opt.value = e; opt.textContent = e;
+    sel.appendChild(opt);
+  });
+});
+
+function updateProgress() {
+  const ids = Object.keys(questionLabels);
+  let answered = 0;
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.value) answered++;
+  });
+  const pct = Math.round((answered / ids.length) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = answered + ' / ' + ids.length + ' réponses';
+}
+
+function showToast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  setTimeout(() => t.className = 'toast', 3000);
+}
+
+async function submitForm() {
+  const ids = Object.keys(questionLabels);
+  let answered = 0;
+  const votes = {};
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.value) { votes[id] = el.value; answered++; }
+  });
+
+  if (answered < 5) {
+    showToast('⚠️ Réponds à au moins 5 questions !', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  try {
+    // Wait for Firebase to be ready (max 10s)
+    if (!window._firebaseReady) {
+      await new Promise((resolve, reject) => {
+        const t = setTimeout(() => reject(new Error('Vérifie ta connexion internet et réessaie')), 10000);
+        window.addEventListener('firebaseReady', () => { clearTimeout(t); resolve(); }, { once: true });
+      });
+    }
+
+    await window._addDoc(window._collection(window._db, 'votes'), {
+      ...votes,
+      timestamp: window._serverTimestamp()
+    });
+
+    document.getElementById('form-screen').style.display = 'none';
+    document.getElementById('success-screen').style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+
+  } catch(e) {
+    console.error(e);
+    showToast('❌ Erreur : ' + e.message, 'error');
+    btn.disabled = false;
+    btn.textContent = '🏆 ENVOYER MES VOTES';
+  }
+}
+
+function openAdmin() {
+  document.getElementById('adminModal').classList.add('open');
+}
+function closeAdmin() {
+  document.getElementById('adminModal').classList.remove('open');
+}
+
+function checkAdmin() {
+  const pwd = document.getElementById('adminPassword').value;
+  if (pwd === ADMIN_PASSWORD) {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-content').style.display = 'block';
+    loadVotes();
+  } else {
+    showToast('❌ Mot de passe incorrect', 'error');
+  }
+}
+
+async function loadVotes() {
+  const summary = document.getElementById('votesSummary');
+  const totalEl = document.getElementById('totalVotes');
+  summary.innerHTML = '<div class="loading">⏳ Chargement...</div>';
+
+  try {
+    if (!window._firebaseReady) {
+      await new Promise((resolve, reject) => {
+        const t = setTimeout(() => reject(new Error('Firebase non disponible')), 10000);
+        window.addEventListener('firebaseReady', () => { clearTimeout(t); resolve(); }, { once: true });
+      });
+    }
+
+    const snapshot = await window._getDocs(window._collection(window._db, 'votes'));
+    const allVotes = [];
+    snapshot.forEach(doc => allVotes.push(doc.data()));
+
+    const total = allVotes.length;
+    totalEl.innerHTML = `<span>${total}</span> vote${total > 1 ? 's' : ''} reçu${total > 1 ? 's' : ''}`;
+
+    if (total === 0) {
+      summary.innerHTML = '<div class="loading">Aucun vote pour l\'instant.</div>';
+      return;
+    }
+
+    // Tally votes per question
+    const tally = {};
+    Object.keys(questionLabels).forEach(qid => { tally[qid] = {}; });
+
+    allVotes.forEach(vote => {
+      Object.keys(questionLabels).forEach(qid => {
+        if (vote[qid]) {
+          tally[qid][vote[qid]] = (tally[qid][vote[qid]] || 0) + 1;
+        }
+      });
+    });
+
+    // Render
+    summary.innerHTML = '';
+    Object.keys(questionLabels).forEach(qid => {
+      const counts = tally[qid];
+      if (Object.keys(counts).length === 0) return;
+
+      const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1]);
+      const row = document.createElement('div');
+      row.className = 'vote-row';
+      row.innerHTML = `<div class="vote-row-title">${questionLabels[qid]}</div>`;
+      sorted.forEach(([name, count]) => {
+        row.innerHTML += `<div class="vote-entry"><span>${name}</span><span class="vote-name">${name}</span><span class="vote-count">${count} vote${count>1?'s':''}</span></div>`;
+      });
+      // Fix: remove duplicate name
+      row.querySelectorAll('.vote-entry').forEach((el, i) => {
+        const spans = el.querySelectorAll('span');
+        if (spans.length === 3) spans[0].remove();
+      });
+      summary.appendChild(row);
+    });
+
+  } catch(e) {
+    summary.innerHTML = '<div class="loading" style="color:var(--accent)">Erreur : ' + e.message + '</div>';
+  }
+}
+
+// Close modal on overlay click
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdmin();
+});
+</script>
+</body>
+</html>
